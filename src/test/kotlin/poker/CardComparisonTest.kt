@@ -19,12 +19,12 @@ class CardComparisonTest {
     @Test fun five_should_be_higher_than_four()   = H5.should_be_higher_than(H4)
     @Test fun four_should_be_higher_than_three()  = H4.should_be_higher_than(H3)
     @Test fun three_should_be_higher_than_two()   = H3.should_be_higher_than(H2)
-    @Test fun color_should_not_be_valuable()      = HA.should_be_equal_to(DA)
+    @Test fun color_should_not_be_valuable()      = HA.should_have_same_value_as(DA)
 
     private fun Card.should_be_higher_than(other: Card) {
         Assertions.assertThat(this.value).isGreaterThan(other.value);
     }
-    private fun Card.should_be_equal_to(other: Card) {
+    private fun Card.should_have_same_value_as(other: Card) {
         Assertions.assertThat(this.value).isEqualByComparingTo(other.value);
     }
 
