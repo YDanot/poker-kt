@@ -2,11 +2,11 @@ package poker
 
 enum class Type {
 
-    HIGHEST, PAIR;
+    HIGHEST, PAIR, PAIRS;
 
     companion object {
         fun orderedTypes(): List<Type> {
-            return listOf(PAIR, HIGHEST)
+            return listOf(PAIRS, PAIR, HIGHEST)
         }
     }
 }

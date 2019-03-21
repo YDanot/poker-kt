@@ -31,6 +31,7 @@ class Hand(private val _cards: List<Card>) : Comparable<Hand> {
         return when (type) {
             Type.PAIR -> findAllCombinationUsing({ pair(this) })
             Type.HIGHEST -> findAllCombinationUsing({ highest(this) })
+            Type.PAIRS -> findAllCombinationUsing({ pair(this) })
         }
     }
 
@@ -56,7 +57,12 @@ class Hand(private val _cards: List<Card>) : Comparable<Hand> {
 
         private fun pair(cards: List<Card>): Combination? {
             val pairsValue = cards.groupingBy { it.value }.eachCount().filter { it.value == 2 }.keys
-            return if (pairsValue.isNotEmpty()) {
+            return if (pairsValue.size == 2) {
+                Combination(
+                    Type.PAIRS,
+                    cards.filter { pairsValue.contains(it.value) }
+                )
+            } else if (pairsValue.size == 1) {
                 Combination(
                     Type.PAIR,
                     cards.filter { it.value == pairsValue.first() }
@@ -65,6 +71,7 @@ class Hand(private val _cards: List<Card>) : Comparable<Hand> {
                 null
             }
         }
+
     }
 
 
