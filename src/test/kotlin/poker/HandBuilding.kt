@@ -2,7 +2,6 @@ package poker
 
 import org.assertj.core.api.Assertions
 import org.junit.Test
-import java.lang.IllegalArgumentException
 
 class HandBuilding {
 
@@ -21,8 +20,7 @@ private fun String.should_not_be_a_valid_hand() {
     try {
         val hand = hand(this)
         Assertions.fail(hand.toString() + "")
-    } catch (e: IllegalArgumentException) {
-    }
+    } catch (e: IllegalArgumentException) {}
 }
 
 private fun String.should_be_a_valid_hand() {

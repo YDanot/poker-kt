@@ -12,11 +12,3 @@ class HighestCardInHand {
         highest_card_of("6♡ K♡ 2♢ 3♢ 7♢") should_be "K♡"
     }
 }
-
-private fun highest_card_of(s: String): Card {
-    return hand(s).highest()
-}
-
-private infix fun Card.should_be(s: String) {
-    Assertions.assertThat(this).isEqualTo(card(s))
-}

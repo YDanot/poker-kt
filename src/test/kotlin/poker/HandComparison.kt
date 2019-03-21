@@ -11,12 +11,10 @@ class HandComparison {
     @Test
     fun highestCardKingVsAce() = "K♧ 6♧ 2♧ 3♧ 7♤" should_loose_against "A♡ K♡ 2♢ 3♢ 7♢"
 
-}
+    @Test
+    fun highestPairKingVsHighestCardAce() = "K♧ K♤ 2♧ 3♧ 7♤" should_win_against "A♡ K♡ 2♢ 3♡ 7♢"
 
-private infix fun String.should_loose_against(s: String) {
-    Assertions.assertThat(hand(this).winsAgainst(hand(s))).isFalse()
-}
+    @Test
+    fun highestPairKingVsHighestPairQueen() = "K♧ K♤ 2♧ 3♧ 7♤" should_win_against "Q♡ Q♡ A♢ 3♡ 7♢"
 
-private infix fun String.should_win_against(s: String) {
-    Assertions.assertThat(hand(this).winsAgainst(hand(s))).isTrue()
 }

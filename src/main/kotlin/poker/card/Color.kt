@@ -5,7 +5,7 @@ enum class Color(val symbol:Char) {
     HEART   ('♡'),
     DIAMOND ('♢'),
     CLUBS   ('♧'),
-    SPIDES  ('♤');
+    SPADE   ('♤');
 
     companion object {
         fun of(value: Char): Color? {
