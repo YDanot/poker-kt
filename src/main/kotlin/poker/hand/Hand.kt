@@ -13,10 +13,10 @@ class Hand(private val _cards: List<Card>) : Comparable<Hand> {
     }
 
     override fun compareTo(other: Hand): Int {
-        for (it in combinations().sortedDescending().zip(other.combinations().sortedDescending())) {
-            if (it.first > it.second) {
+        for (combinations in combinations().sortedDescending().zip(other.combinations().sortedDescending())) {
+            if (combinations.first > combinations.second) {
                 return 1
-            } else if (it.first < it.second) {
+            } else if (combinations.first < combinations.second) {
                 return -1
             }
         }
@@ -29,20 +29,22 @@ class Hand(private val _cards: List<Card>) : Comparable<Hand> {
 
     private fun find(type: Type): List<Combination?> {
         return when (type) {
-            Type.PAIR -> findAllCombinationUsing({ pair(this) })
-            Type.HIGHEST -> findAllCombinationUsing({ highest(this) })
-            Type.PAIRS -> findAllCombinationUsing({ pair(this) })
+            Type.PAIR, Type.PAIRS -> findPairs()
+            Type.HIGHEST -> findHighest()
         }
     }
 
-    private fun findAllCombinationUsing(finder: List<Card>.() -> Combination?): List<Combination?> {
-        val cards = _cards.toMutableList()
+    private fun findHighest() = findUsing({ highest(this) }, _cards.toMutableList())
+
+    private fun findPairs() = findUsing({ pair(this) }, _cards.toMutableList())
+
+    private fun findUsing(finder: List<Card>.() -> Combination?, cards: MutableList<Card>): List<Combination?> {
         var combinations = emptyList<Combination?>()
-        var found = finder(cards)
-        while (cards.isNotEmpty() && found != null) {
-            combinations = combinations.plus(found)
-            cards.removeAll(found.cards)
-            found = finder(cards)
+        var combination = finder(cards)
+        while (cards.isNotEmpty() && combination != null) {
+            cards.removeAll(combination.cards)
+            combinations = combinations.plus(combination)
+            combination = finder(cards)
         }
         return combinations
     }
