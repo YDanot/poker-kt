@@ -31,12 +31,14 @@ class Hand(private val _cards: List<Card>) : Comparable<Hand> {
         return when (type) {
             Type.PAIR, Type.PAIRS -> findPairs()
             Type.HIGHEST -> findHighest()
+            Type.TRIPS -> findTrips()
         }
     }
 
     private fun findHighest() = findUsing({ highest(this) }, _cards.toMutableList())
 
     private fun findPairs() = findUsing({ pair(this) }, _cards.toMutableList())
+    private fun findTrips() = findUsing({ trips(this) }, _cards.toMutableList())
 
     private fun findUsing(finder: List<Card>.() -> Combination?, cards: MutableList<Card>): List<Combination?> {
         var combinations = emptyList<Combination?>()
@@ -67,6 +69,18 @@ class Hand(private val _cards: List<Card>) : Comparable<Hand> {
             } else if (pairsValue.size == 1) {
                 Combination(
                     Type.PAIR,
+                    cards.filter { it.value == pairsValue.first() }
+                )
+            } else {
+                null
+            }
+        }
+
+        private fun trips(cards: List<Card>): Combination? {
+            val pairsValue = cards.groupingBy { it.value }.eachCount().filter { it.value == 3 }.keys
+            return if (pairsValue.isNotEmpty()) {
+                Combination(
+                    Type.TRIPS,
                     cards.filter { it.value == pairsValue.first() }
                 )
             } else {

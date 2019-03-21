@@ -35,14 +35,6 @@ fun combinations_of(c: String): List<Combination> {
     return hand(c).combinations()
 }
 
-fun pair(pair: String): Combination {
-    return Combination(
-        Type.PAIR, listOf(
-            card(pair.substringBefore(" ")),
-            card(pair.substringAfter(" "))
-        )
-    )
-}
 
 infix fun List<Combination>.should_contains(combination: Combination) {
     Assertions.assertThat(this).contains(combination)

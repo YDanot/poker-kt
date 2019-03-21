@@ -1,8 +1,6 @@
 package poker
 
-import org.assertj.core.api.Assertions
 import org.junit.Test
-import poker.card.Card
 
 class HighestCardInHand {
 
