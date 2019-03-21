@@ -20,6 +20,15 @@ class HandComparison {
     fun highestPairKingVsHighestCardAce() = "K♧ K♤ 2♧ 3♧ 7♤" should_win_against "A♡ K♡ 2♢ 3♡ 7♢"
 
     @Test
-    fun highestPairKingVsHighestPairQueen() = "K♧ K♤ 2♧ 3♧ 7♤" should_win_against "Q♡ Q♡ A♢ 3♡ 7♢"
+    fun highestPairKingVsHighestPairQueen() = "K♧ K♤ 2♧ 3♧ 7♤" should_win_against "Q♡ Q♧ A♢ 3♡ 7♢"
+
+    @Test
+    fun pairsShouldWinAgainstSinglePair() = "K♧ K♤ 7♧ 3♧ 7♤" should_win_against "A♡ 5♡ A♢ 3♡ 7♢"
+
+    @Test
+    fun pairs_K_A_shouldWinAgainstPairs_K_Q() = "K♧ K♤ A♧ 3♧ A♤" should_win_against "K♡ Q♡ K♢ 3♡ Q♢"
+
+    @Test
+    fun trips_shouldWinAgainstPairs() = "K♧ K♤ K♡ 3♧ A♤" should_win_against "A♧ A♡ K♢ Q♡ Q♢"
 
 }

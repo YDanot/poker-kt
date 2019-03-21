@@ -36,7 +36,6 @@ class Hand(private val _cards: List<Card>) : Comparable<Hand> {
     }
 
     private fun findHighest() = findUsing({ highest(this) }, _cards.toMutableList())
-
     private fun findPairs() = findUsing({ pair(this) }, _cards.toMutableList())
     private fun findTrips() = findUsing({ trips(this) }, _cards.toMutableList())
 
