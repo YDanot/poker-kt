@@ -11,9 +11,6 @@ class HandBuilding {
     @Test
     fun four_cards_hand() = "A♡ 2♢ 3♢ 7♢".should_not_be_a_valid_hand()
 
-    @Test
-    fun six_cards_hand() = "A♡ 2♢ 3♢ 7♢ 4♢ 5♢".should_not_be_a_valid_hand()
-
 }
 
 private fun String.should_not_be_a_valid_hand() {

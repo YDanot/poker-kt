@@ -6,7 +6,6 @@ import poker.card.Color
 import poker.card.Value
 import poker.hand.Hand
 
-
 fun hand(hand: String) = Hand(hand.split(" ").map { card(it) })
 
 fun card(s: String): Card {
@@ -14,11 +13,14 @@ fun card(s: String): Card {
 }
 
 infix fun String.should_loose_against(hand: String) {
-    Assertions.assertThat(hand(this).winsAgainst(hand(hand))).isFalse()
+    Assertions.assertThat(hand(this)).isLessThan(hand(hand))
+}
+infix fun String.should_be_equals_to(hand: String) {
+    Assertions.assertThat(hand(this)).isEqualByComparingTo(hand(hand))
 }
 
 infix fun String.should_win_against(hand: String) {
-    Assertions.assertThat(hand(this).winsAgainst(hand(hand))).isTrue()
+    Assertions.assertThat(hand(this)).isGreaterThan(hand(hand))
 }
 
 fun highest_card_of(s: String): Card {
