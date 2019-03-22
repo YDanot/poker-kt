@@ -24,17 +24,17 @@ class Hand(private val _cards: List<Card>) : Comparable<Hand> {
     }
 
     fun combinations(): List<Combination> {
-        return findAllCombinations(Type.values().sortedDescending(), _cards)
+        return find(Type.values().sortedDescending(), _cards)
     }
 
-    private fun findAllCombinations(types: List<Type>, cards: List<Card>): List<Combination> {
+    private fun find(types: List<Type>, cards: List<Card>): List<Combination> {
         if (types.isEmpty() || cards.isEmpty()) {
             return emptyList()
         }
 
-        val combination = types.first().find(cards)
+        val combination = types.first().findIn(cards)
         return listOfNotNull(combination).plus(
-            findAllCombinations(types.drop(1), cards.minus(combination?.cards ?: emptyList()))
+            find(types.drop(1), cards.minus(combination?.cards ?: emptyList()))
         )
     }
 
