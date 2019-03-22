@@ -2,11 +2,14 @@ package poker
 
 enum class Type {
 
-    HIGHEST, PAIR, PAIRS, TRIPS;
+    HIGHEST,
+    PAIR,
+    PAIRS,
+    TRIPS,
+    STRAIGHT,
+    FLUSH,
+    FULLHOUSE,
+    QUADS,
+    STRAIGHT_FLUSH;
 
-    companion object {
-        fun orderedTypes(): List<Type> {
-            return listOf(TRIPS, PAIRS, PAIR, HIGHEST)
-        }
-    }
 }
