@@ -1,6 +1,8 @@
 package poker
 
 import org.junit.Test
+import poker.combination.Combination
+import poker.combination.Type
 
 
 class TexasCombinaisonFinder {

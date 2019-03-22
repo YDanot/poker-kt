@@ -1,6 +1,6 @@
-package poker
+package poker.combination
 
-import poker.Type.FULLHOUSE
+import poker.combination.Type.FULLHOUSE
 import poker.card.Card
 import poker.card.Value
 

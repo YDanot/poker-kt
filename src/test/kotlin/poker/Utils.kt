@@ -4,6 +4,8 @@ import org.assertj.core.api.Assertions
 import poker.card.Card
 import poker.card.Color
 import poker.card.Value
+import poker.combination.Combination
+import poker.combination.Type
 import poker.hand.Hand
 
 fun hand(hand: String) = Hand(hand.split(" ").map { card(it) })
