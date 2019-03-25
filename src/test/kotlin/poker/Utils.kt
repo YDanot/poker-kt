@@ -38,8 +38,14 @@ fun combinations_of(c: String): List<Combination> {
 }
 
 
-infix fun List<Combination>.should_contains(combination: Combination) {
+infix fun List<Combination>.should_contains(combination: Combination): List<Combination> {
     Assertions.assertThat(this).contains(combination)
+    return this
+}
+
+infix fun List<Combination>.and(combination: Combination): List<Combination> {
+    should_contains(combination)
+    return this
 }
 
 private fun value(s: String): Value? {
